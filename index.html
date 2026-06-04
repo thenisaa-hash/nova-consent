@@ -927,7 +927,9 @@
     const EMAILJS_TEMPLATE_ID = "template_la07wb9"; 
 
     if (EMAILJS_PUBLIC_KEY) {
-        emailjs.init(EMAILJS_PUBLIC_KEY);
+        emailjs.init({
+            publicKey: EMAILJS_PUBLIC_KEY
+        });
     }
 
     // Optional: Google Sheet Webhook Sync

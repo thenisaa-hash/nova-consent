@@ -1226,26 +1226,37 @@
 
     // Send Email Receipt via EmailJS
     function sendEmailReceipt(record) {
-        if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
-            console.log("EmailJS keys not configured. Automated emailing is skipped.");
-            return;
+        try {
+            if (typeof emailjs === 'undefined') {
+                alert("Debug Error: EmailJS library is not loaded/defined on this page.");
+                return;
+            }
+
+            if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+                console.log("EmailJS keys not configured. Automated emailing is skipped.");
+                return;
+            }
+
+            const dateObj = new Date(record.timestamp);
+            const templateParams = {
+                customer_name: record.fullName,
+                customer_email: record.email,
+                customer_phone: record.phone,
+                submission_date: dateObj.toLocaleDateString() + ' ' + dateObj.toLocaleTimeString(),
+                signature_data_url: record.signature 
+            };
+
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(function(response) {
+                    console.log('Receipt emailed successfully via EmailJS!', response.status, response.text);
+                }, function(error) {
+                    console.error('Failed to send receipt email...', error);
+                    alert("EmailJS Send Failed: " + JSON.stringify(error));
+                });
+        } catch (err) {
+            console.error("sendEmailReceipt exception:", err);
+            alert("Javascript Error in sendEmailReceipt: " + err.message);
         }
-
-        const dateObj = new Date(record.timestamp);
-        const templateParams = {
-            customer_name: record.fullName,
-            customer_email: record.email,
-            customer_phone: record.phone,
-            submission_date: dateObj.toLocaleDateString() + ' ' + dateObj.toLocaleTimeString(),
-            signature_data_url: record.signature 
-        };
-
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-            .then(function(response) {
-                console.log('Receipt emailed successfully via EmailJS!', response.status, response.text);
-            }, function(error) {
-                console.error('Failed to send receipt email...', error);
-            });
     }
 
     // Send Central Google Sheet Sync

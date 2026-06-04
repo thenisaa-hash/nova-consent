@@ -11,8 +11,6 @@
     
     <!-- html2pdf.js library for offline receipt generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <!-- EmailJS SDK for client-side emailing -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <style>
         :root {
@@ -51,7 +49,7 @@
 
         .app-container {
             width: 100%;
-            max-width: 760px;
+            max-width: 760px; /* Sized to fit 5 logos beautifully */
             background: var(--card-bg);
             border-radius: var(--radius);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -332,13 +330,18 @@
         /* Thank you note */
         .consent-footer-note {
             text-align: center;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             color: var(--accent);
             margin: 25px 0 15px 0;
-            padding: 12px;
+            padding: 15px;
             border-top: 1px dashed var(--border);
-            line-height: 1.4;
+            line-height: 1.5;
+        }
+
+        .consent-footer-note a {
+            color: inherit;
+            text-decoration: underline;
         }
 
         .submit-btn {
@@ -770,7 +773,9 @@
                 </div>
 
                 <div class="consent-footer-note">
-                    Thank you for giving us consent to use your testimonials and feedbacks for marketing purposes!
+                    Thank you for giving us consent to use your testimonials and feedbacks for marketing purposes!<br>
+                    We are deeply grateful and happy to have you as our customer.<br>
+                    If you have any feedback, please email us at <a href="mailto:novafurnishingsg@gmail.com">novafurnishingsg@gmail.com</a>.
                 </div>
 
                 <button type="submit" class="submit-btn">Submit Digital Consent</button>
@@ -914,7 +919,6 @@
     let consents = JSON.parse(localStorage.getItem(DB_KEY)) || [];
 
     // Optional: EmailJS keys config
-    // To enable automatic emailing of receipts, sign up at emailjs.com (free) and paste your keys below:
     const EMAILJS_PUBLIC_KEY = ""; 
     const EMAILJS_SERVICE_ID = ""; 
     const EMAILJS_TEMPLATE_ID = ""; 
@@ -923,8 +927,7 @@
         emailjs.init(EMAILJS_PUBLIC_KEY);
     }
 
-    // Optional: Google Sheet Webhook Sync (Syncs all submissions to a central Google Sheet)
-    // Create a Google Sheet -> Extensions -> Apps Script -> Paste script from strategy guide -> Publish as Web App -> Paste Web App URL below:
+    // Optional: Google Sheet Webhook Sync
     const GOOGLE_SHEET_WEBHOOK_URL = ""; 
 
     // Signature Canvas setup
@@ -961,6 +964,7 @@
         e.preventDefault();
     }
 
+    // Drawing movement
     function draw(e) {
         if (!drawing) return;
         const pos = getMousePos(canvas, e);

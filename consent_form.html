@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Media Consent & Release Agreement - Nova Furnishing Group</title>
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #4a4a4a;
+            --border-color: #cccccc;
+            --background-color: #ffffff;
+            --text-color: #2c3e50;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.5;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Brand Logos Showcase at the top */
+        .brand-showcase-section {
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .brand-showcase-title {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--secondary-color);
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .logos-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columns for the 5 brands */
+            gap: 12px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .logo-placeholder {
+            width: 100%;
+            height: 55px; /* Standard print height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 6px;
+            overflow: hidden;
+        }
+
+        .logo-placeholder img {
+            max-height: 45px;
+            max-width: 100%;
+            object-fit: contain;
+            mix-blend-mode: multiply; /* Ensure Megahome and other white logos blend nicely */
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 5px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 12px;
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .legal-notice {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        p, li {
+            font-size: 13px;
+            text-align: justify;
+        }
+
+        ol {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+            background-color: #fafafa;
+            padding: 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"] {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 13px;
+            background-color: #ffffff;
+        }
+
+        .signature-block {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .signature-line {
+            border-bottom: 1px solid var(--primary-color);
+            height: 50px;
+            margin-top: 10px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 11px;
+            color: #888888;
+            text-align: center;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 15px;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                background-color: #ffffff;
+            }
+            .container {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Brand Showcase & Logo Grid -->
+    <div class="brand-showcase-section">
+        <div class="brand-showcase-title">All brands under Nova Furnishing Holdings Pte Ltd</div>
+        <div class="logos-grid">
+            <div class="logo-placeholder">
+                <img src="images/nova.png" alt="NOVA">
+            </div>
+            <div class="logo-placeholder">
+                <img src="images/rozel.png" alt="ROZEL">
+            </div>
+            <div class="logo-placeholder">
+                <img src="images/xclusive.png" alt="X'clusive Home">
+            </div>
+            <div class="logo-placeholder">
+                <img src="images/megahome.png" alt="MEGA HOME">
+            </div>
+            <div class="logo-placeholder">
+                <img src="images/sofa_colony.png" alt="The Sofa Colony">
+            </div>
+        </div>
+    </div>
+
+    <h1>Media Consent & Release Agreement</h1>
+    <div class="subtitle">Personal Data Protection Act (PDPA) & Consumer Protection (Fair Trading) Act (CPFTA) Compliant</div>
+
+    <div class="legal-notice">
+        <strong>IMPORTANT NOTICE FOR CUSTOMERS:</strong> By signing this form, you grant <strong>Nova Furnishing Holdings Pte Ltd</strong> and all of its current and future subsidiaries, affiliates, trading names, and brands (including but not limited to <em>Nova Furnishing Centre Pte Ltd (NOVA)</em>, <em>Rozel Furnishing Pte Ltd (ROZEL)</em>, <em>X'clusive Home Pte Ltd (X'clusive Home)</em>, <em>Mega Home Furnishing Pte Ltd (Mega Home)</em>, and <em>Sofaland Pte Ltd (The Sofa Colony)</em>) the absolute right to use the recorded interviews, photos, videos, and opinions for marketing across any of our corporate brand platforms. Please read the terms below carefully before signing.
+    </div>
+
+    <div class="section-title">Terms & Conditions</div>
+    <ol>
+        <li>
+            <strong>Consent to Collect, Use, and Disclose:</strong> In compliance with the Singapore Personal Data Protection Act 2012 (PDPA), I hereby voluntarily consent to <strong>Nova Furnishing Holdings Pte Ltd</strong>, its subsidiaries, affiliates, related corporations, and brands (collectively referred to as "the Group") collecting, using, processing, and disclosing my personal data. This data includes my name, likeness, digital/print photographs, video recordings, audio recordings, statements, and opinions (collectively, "the Content").
+        </li>
+        <li>
+            <strong>Cross-Brand and Multi-Platform Marketing Usage:</strong> I explicitly acknowledge and agree that the Content may be published, shared, cross-posted, and utilized for advertising, promotional, public relations, and editorial purposes across <strong>any and all</strong> of the Group's current or future platforms, including but not limited to websites, print media, advertisements, and social media channels (such as Facebook, Instagram, TikTok, YouTube, and Lemon8) operated under any of the Group’s brands (including but not limited to <em>NOVA</em>, <em>ROZEL</em>, <em>X'exclusive Home</em>, <em>Mega Home</em>, and <em>The Sofa Colony</em>).
+        </li>
+        <li>
+            <strong>Fair Representation & Truthfulness (CPFTA & SCAP Compliance):</strong> I confirm that any statements, reviews, or testimonials I provide in the Content are genuine, honest, and accurately reflect my actual opinions and experiences with the Group's products/services. I agree that the Group's use of my testimonial on any of its affiliate brands' platforms does not constitute false advertising, misleading representation, or an unfair practice under the Consumer Protection (Fair Trading) Act 2012 (CPFTA) or the Singapore Code of Advertising Practice (SCAP), and I will not raise any claims or complaints to CASE, ASAS, or the PDPC in this regard.
+        </li>
+        <li>
+            <strong>Ownership and Intellectual Property:</strong> I agree that all intellectual property rights, including copyright, in the Content belong exclusively to the Group. I hereby assign all rights, title, and interest in the Content to the Group. The Group shall have the unrestricted, perpetual, and worldwide right to edit, modify, crop, combine, or adapt the Content without my prior inspection or approval.
+        </li>
+        <li>
+            <strong>No Compensation or Royalties:</strong> I acknowledge and agree that my participation is voluntary, and I am not entitled to receive any royalties, residuals, fees, or other forms of compensation now or in the future for the Group’s use of the Content.
+        </li>
+        <li>
+            <strong>Irrevocable Release of Liability:</strong> I hereby release, acquit, and forever discharge the Group, its directors, officers, employees, agents, and representatives from any and all claims, demands, causes of action, or liabilities arising out of or in connection with the collection, use, publication, or disclosure of the Content. This includes, without limitation, claims for defamation, invasion of privacy, breach of data privacy under the PDPA, moral rights infringement, or commercial exploitation.
+        </li>
+        <li>
+            <strong>Governing Law:</strong> This Agreement shall be governed by and construed in accordance with the laws of the Republic of Singapore, and I submit to the exclusive jurisdiction of the courts of Singapore.
+        </li>
+    </ol>
+
+    <div class="section-title">Signatory Information</div>
+    
+    <form id="consentForm" onsubmit="event.preventDefault();">
+        <div class="form-grid">
+            <div class="form-group full-width">
+                <label for="fullName">Full Name (as in NRIC/Passport)</label>
+                <input type="text" id="fullName" required placeholder="e.g., Joe Tan">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Contact Number</label>
+                <input type="tel" id="phone" required placeholder="e.g., +65 9123 4567">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="e.g., joe.tan@example.com">
+            </div>
+        </div>
+
+        <div class="signature-block">
+            <div class="form-group">
+                <label>Signature of Participant</label>
+                <div class="signature-line"></div>
+                <p style="font-size: 10px; margin-top: 5px; color: var(--secondary-color);">
+                    By signing, I confirm I have read, understood, and agreed to all the terms above.
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="signDate">Date</label>
+                <input type="date" id="signDate" required style="margin-top: 10px;">
+            </div>
+        </div>
+    </form>
+
+    <div class="footer">
+        © 2026 Nova Furnishing Holdings Pte Ltd. All rights reserved. <br>
+        This document is legally binding. A copy will be stored securely in our databases in compliance with the PDPA Data Retention policy.
+    </div>
+</div>
+
+<div class="no-print" style="margin-top: 30px; text-align: center;">
+    <button onclick="window.print();" style="padding: 12px 24px; background-color: var(--primary-color); color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px;">Print / Save as PDF</button>
+</div>
+
+</body>
+</html>

@@ -539,16 +539,25 @@
         }
 
         /* Acknowledgement Receipt PDF print styles */
-        #acknowledgementReceipt {
+        .pdf-offscreen-wrapper {
             position: absolute;
-            left: -9999px;
-            top: -9999px;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            z-index: -9999;
+            pointer-events: none;
+        }
+
+        #acknowledgementReceipt {
             width: 595px;
             padding: 40px;
             background: #ffffff;
             color: #0f172a;
             font-family: 'Inter', sans-serif;
             border: 1px solid #e2e8f0;
+            box-sizing: border-box;
         }
 
         .receipt-header {
@@ -861,6 +870,7 @@
 <!-- ========================================== -->
 <!-- OFFLINE RECEIPT GENERATOR CONTAINER (HIDDEN) -->
 <!-- ========================================== -->
+<div class="pdf-offscreen-wrapper">
 <div id="acknowledgementReceipt">
     <div class="receipt-header">
         <h1 id="receiptParentName">Nova Furnishing Holdings Pte Ltd</h1>
@@ -913,6 +923,7 @@
         Thank you for giving us consent to use your testimonials and feedbacks for marketing purposes!<br>
         © 2026 Nova Furnishing Holdings Pte Ltd. All rights reserved.
     </div>
+</div>
 </div>
 
 <script>
@@ -1237,22 +1248,48 @@
                 return;
             }
 
+            // Populate receipt template elements for PDF conversion
             const dateObj = new Date(record.timestamp);
-            const templateParams = {
-                customer_name: record.fullName,
-                customer_email: record.email,
-                customer_phone: record.phone,
-                submission_date: dateObj.toLocaleDateString() + ' ' + dateObj.toLocaleTimeString(),
-                signature_data_url: record.signature 
+            document.getElementById("receiptDate").innerText = dateObj.toLocaleDateString() + ' ' + dateObj.toLocaleTimeString();
+            document.getElementById("receiptName").innerText = record.fullName;
+            document.getElementById("receiptPhone").innerText = record.phone;
+            document.getElementById("receiptEmail").innerText = record.email;
+            document.getElementById("receiptSigImg").src = record.signature;
+
+            const element = document.getElementById("acknowledgementReceipt");
+            const opt = {
+                margin:       10,
+                filename:     `Nova_Consent_Acknowledgement_${record.fullName.replace(/\s+/g, '_')}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-                .then(function(response) {
-                    console.log('Receipt emailed successfully via EmailJS!', response.status, response.text);
-                }, function(error) {
-                    console.error('Failed to send receipt email...', error);
-                    alert("EmailJS Send Failed: " + JSON.stringify(error));
-                });
+            // Generate the PDF in background as a Base64 string
+            html2pdf().from(element).set(opt).output('datauristring').then(function(pdfAsString) {
+                // Extract clean Base64 data from data URI
+                const base64Data = pdfAsString.split('base64,')[1];
+
+                const templateParams = {
+                    customer_name: record.fullName,
+                    customer_email: record.email,
+                    customer_phone: record.phone,
+                    submission_date: dateObj.toLocaleDateString() + ' ' + dateObj.toLocaleTimeString(),
+                    signature_data_url: record.signature,
+                    consent_pdf: base64Data // Matches the EmailJS variable attachment name
+                };
+
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
+                    .then(function(response) {
+                        console.log('Receipt emailed successfully with PDF attachment via EmailJS!', response.status, response.text);
+                    }, function(error) {
+                        console.error('Failed to send receipt email...', error);
+                        alert("EmailJS Send Failed: " + JSON.stringify(error));
+                    });
+            }).catch(function(pdfErr) {
+                console.error("PDF generation failed for email:", pdfErr);
+                alert("PDF Generation Failed: " + pdfErr.message);
+            });
         } catch (err) {
             console.error("sendEmailReceipt exception:", err);
             alert("Javascript Error in sendEmailReceipt: " + err.message);
